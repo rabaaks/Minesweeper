@@ -4,7 +4,6 @@
 #include <random>
 #include <algorithm>
 
-// Enum for the state of the cell
 enum class CellState {
     uncovered,
     covered,

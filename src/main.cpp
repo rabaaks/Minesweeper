@@ -79,9 +79,9 @@ int getNumSurroundingMines(const board_t& board, boardIndex_t row, boardIndex_t 
 
     int numSurroundingMines{};
 
-    // Loop through the surrounding cells and check if they are mines
-    for (boardIndex_t rrow{std::max(row-1, static_cast<boardIndex_t>(0))}; rrow <= std::min(row+1, g_boardSize-1); ++rrow) {
-        for (boardIndex_t rcol{std::max(col-1, static_cast<boardIndex_t>(0))}; rcol <= std::min(col+1, g_boardSize-1); ++rcol) {
+    // ...It works soooo
+    for (boardIndex_t rrow{static_cast<boardIndex_t>(std::max(static_cast<int>(row-1), 0))}; rrow <= std::min(row+1, g_boardSize-1); ++rrow) {
+        for (boardIndex_t rcol{static_cast<boardIndex_t>(std::max(static_cast<int>(col-1), 0))}; rcol <= std::min(col+1, g_boardSize-1); ++rcol) {
             if (board[rrow][rcol].isMine) {
                 ++numSurroundingMines;
             }
@@ -140,8 +140,9 @@ int mine(board_t& board, boardIndex_t row, boardIndex_t col) {
         return true;
     }
 
-    for (boardIndex_t rrow{std::max(row-1, static_cast<boardIndex_t>(0))}; rrow <= std::min(row+1, g_boardSize-1); ++rrow) {
-        for (boardIndex_t rcol{std::max(col-1, static_cast<boardIndex_t>(0))}; rcol <= std::min(col+1, g_boardSize-1); ++rcol) {
+    // ???
+    for (boardIndex_t rrow{static_cast<boardIndex_t>(std::max(static_cast<int>(row-1), 0))}; rrow <= std::min(row+1, g_boardSize-1); ++rrow) {
+        for (boardIndex_t rcol{static_cast<boardIndex_t>(std::max(static_cast<int>(col-1), 0))}; rcol <= std::min(col+1, g_boardSize-1); ++rcol) {
             mine(board, rrow, rcol);
         }
     }
@@ -159,6 +160,8 @@ bool boardEmpty(const board_t& board) {
             }
         }
     }
+
+    std::cout << numFlaggedCells << '\n';
 
     return ((numFlaggedCells == g_numMines) ? true : false);
 }
@@ -205,7 +208,7 @@ int main() {
     std::cout << "Creating random board...\n";
     board_t board{ createBoard() };
     std::cout << "Done creating board!\n";
-    
+
     if (playGame(board)) {
         std::cout << "You won!\n";
     } else {

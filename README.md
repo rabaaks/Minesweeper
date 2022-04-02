@@ -9,8 +9,6 @@ You'll get a 9x9 grid and there are nine mines. You can input the row and column
 
 What the different symbols mean:
 
-  \# - Cell is covered
-  
-  X - Cell is flagged
-  
-  A number - number of neighboring mines
+  * \# - Cell is covered
+  * X - Cell is flagged
+  * A number - number of neighboring mines
